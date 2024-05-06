@@ -1,0 +1,57 @@
+---
+title: "Demo Shiny App"
+author: "Yiping"
+date: "2024-04-18"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    runtime: shiny
+---
+
+```{r}
+library(flexdashboard)
+knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+```
+
+```{r some-chunk, echo=FALSE}
+ui <- fluidPage(
+  titlePanel("Gene Expression Classifier"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("num_genes", "Number of Genes:", min = 1, max = 1000, value = 100),
+      actionButton("submit", "Build Classifier")
+    ),
+    
+    mainPanel(
+      plotOutput("pca_plot"),
+      verbatimTextOutput("model_accuracy")
+    )
+  )
+)
+```
+
+
+```{r}
+server <- function(input, output) {
+  observeEvent(input$submit, {
+    # Placeholder for PCA plot generation
+    output$pca_plot <- renderPlot({
+      plot(rnorm(input$num_genes), rnorm(input$num_genes), main = "PCA Plot", xlab = "PC1", ylab = "PC2")
+    })
+    # Placeholder for model accuracy
+    output$model_accuracy <- renderText({
+      paste("Model Accuracy:", runif(1, min = 0, max = 1))
+    })
+  })
+}
+
+```
+```{r}
+shinyApp(ui = ui, server = server)
+
+```
+
+
