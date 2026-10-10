@@ -28,3 +28,5 @@ install.packages(c("shiny", "flexdashboard", "rmarkdown", "knitr"))
 ```
 
 Open [shinyapp.io.Rmd](shinyapp.io.Rmd) and run its chunks, including the final `shinyApp(ui = ui, server = server)` call. The source credits the original notebook author as Yiping.
+
+Original code is available for noncommercial use under [PolyForm Noncommercial 1.0.0](LICENSE). See [license scope and third-party assets](docs/LICENSE_SCOPE.md).
